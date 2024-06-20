@@ -57,7 +57,6 @@ end
 function getContourLevels(varname,hemisphere)
 begin
     if (varname .eq. "aice") then
-      ;cntrs=(/5,10,15,20,30,40,50,60,70,80,85,90,95,99/) ; aice
        cntrs=(/10,20,30,40,50,60,70,80,90/) ; aice
     end if
     if (varname .eq. "hi") then
@@ -96,7 +95,6 @@ begin
         res@mpMaxLatF = -60
     end if
     res@cnLevels       = cntrs
-   ;res@cnFillColors = (/2,3,4,5,6,7,8,9,10,11/)
     res@cnFillColors = (/3,4,6,7,9,13,14,15,16,17/)
     res@cnMinLevelValF = cntrs(0)
     return(res) 

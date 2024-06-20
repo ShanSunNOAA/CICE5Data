@@ -136,7 +136,6 @@ for n=1:1
   i1=i1+w+hspace;
 end %n=1,2
 
-%i1=0.04; j1=.1
 axes('position',[i1,j1,w,hgt])
 q=plot(xdim1,x(:,2),'m',xdim1,x(:,3),'c',xdim1,x(:,4),'k',xdim1,x(:,5),'g',xdim1,y(:,2),'m--',xdim1,y(:,3),'c--',xdim1,y(:,4),'k--',xdim1,y(:,5),'g--'); hold on
 set(q,'linewidth',wd2)

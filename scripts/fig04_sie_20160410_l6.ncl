@@ -63,8 +63,6 @@ begin
     end if
     if (varname .eq. "hi") then
       cntrs=(/.25,.5,.75,1.,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5/) ; aice
-     ;cntrs=(/.25,.5,.75,1.,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5,3.75,4.0,4.25/) ; hi_d 17number for precip3_16lev, if there is ice thicker than 4m
-     ;cntrs=(/.25,.5,.75,1.,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.25,3.5,3.75,4.0,4.25/) ; hi_d 17number for precip3_16lev, if there is ice thicker than 4m
     end if
     return(cntrs)
 end
@@ -99,7 +97,6 @@ begin
         res@mpMaxLatF = -60
     end if
     res@cnLevels       = cntrs
-   ;res@cnFillColors = (/2,3,4,5,6,7,8,9,10,11/)
     res@cnFillColors = (/3,4,6,7,9,13,14,15,16,17/)
     res@cnMinLevelValF = cntrs(0)
     return(res) 
@@ -189,8 +186,8 @@ begin
     obs2= maskIce(obs2,hemisphere)
 
     ; colourmap
-    wks = gsn_open_wks("x11", "sie_201610_l6")
-   ;wks = gsn_open_wks("png",get_script_prefix_name())
+   ;wks = gsn_open_wks("x11", "sie_201610_l6")
+    wks = gsn_open_wks("png",get_script_prefix_name())
     plot = new(6,graphic) ; create a plot array
     cmap = "precip2_17lev";"perc2_9lev";
     gsn_define_colormap(wks,cmap)

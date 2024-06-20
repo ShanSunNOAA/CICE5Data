@@ -53,20 +53,11 @@ set(gca,'yticklabel',[])
 for m=1:12
 text(m-.3,-0.2,month10(m,1:1),'FontSize',6)
 end
-%if (n > 4) xlabel('Valid Month','fontsize',8); end % too close to x-axis
 text(3,-.7,'Valid Month','FontSize',8);
-%%text(2.1,4.3,int2str(n),'FontSize',8,'fontweight','bold')
 
 text(-.07,0,'0','FontSize',8);
 text(-.07,2,'2','FontSize',8);
 text(-.07,4,'4','FontSize',8);
-
-%yticks(0 : 2 : 4);
-%a=get(gca,'YTickLabel');
-%set(gca,'YTickLabel',a,'fontsize',8)
-%set(gca,'YTickLabel',[0 2 4],'fontsize',8)
-
-%if (n==1 || n==5) ylabel('Ice Extent','fontsize',8); end
 
 if (n==1) basin8='1) BKG Sea'; end
 if (n==2) basin8='2) Canadian Arctic'; end
@@ -80,15 +71,11 @@ if (n==8) basin8='8) Laptev Sea'; end
 title(basin8,'fontsize',8)
 
 i1=i1+w+hspace;
-%axis([1 12 xmin(n) xmax(n)])
 axis([1 12 0 5])
 if (n==8) 
 legend ('Control','CS2\_IC','AMSR2','location','NE')
-%legend ('boxoff')
 end
 
 end
 
-%print -djpeg sie_8basin_aprIC.jpg
 print -depsc2 fig11_sie_8basin_octIC.eps
-%print -dpdf fig10_sie_8basin_aprIC.pdf

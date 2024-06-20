@@ -59,18 +59,15 @@ end
 function getContourLevels(varname,hemisphere)
 begin
     if (varname .eq. "aice") then
-      ;cntrs=(/10,20,30,40,50,60,70,80,90/) ; 9 numbers aice
        cntrs=(/10,25,40,50,60,70,80,85,90/) ; 9 numbers aice
     end if
     if (varname .eq. "hi") then
       cntrs=(/.3,0.7,1.1,1.5,1.9,2.3,2.7,3.1,3.5/) 
     end if
     if (varname .eq. "dm") then
-       cntrs=(/-1.2,-.9,-.6,-.3,.3,.6,.9,1.2/) ; 8 numbers
        cntrs=(/-1.2,-.8,-.4,-.2,.2,.4,.8,1.2/) ; 8 numbers
     end if
     if (varname .eq. "daice") then
-       cntrs=(/-20,-15,-10,-5,5,10,15,20/) ; 8 numbers aice
        cntrs=(/-25,-15,-5,-2,2,5,15,25/) ; 8 numbers aice
     end if
     if (varname .eq. "dhi") then
@@ -111,9 +108,7 @@ begin
     res@cnLevelSelectionMode = "ExplicitLevels"     ; set manual contour levels
     res@cnLevels       = cntrs
     res@cnMinLevelValF = cntrs(0)
-   ;res@cnFillColors = (/2,3,4,5,6,7,8,9,10,11/)    ;perc2_9lev
     res@cnFillColors = (/3,4,6,7,9,13,14,15,16,17/) ;precip2_17lev
-   ;res@lbLabelBarOn    = true           ; turn off individual cb's
     res@lbLabelFontHeightF  = 0.022
     return(res) 
 end
@@ -151,7 +146,6 @@ begin
     res@cnLevels       = cntrs
     res@cnMinLevelValF = cntrs(0)
     res@cnFillColors = (/2,3,4,5,7,9,10,11,12/)
-   ;res@lbLabelBarOn    = true           ; turn off individual cb's
     return(res) 
 end
 
@@ -213,15 +207,12 @@ begin
     ; printVarSummary(ulon)
     xyz = fi->meltt(lmon,:,:)
     meltt = fillGap(xyz,ulat2d,ulon2d)
-   ;meltt = maskIce(meltt,hemisphere)
 
     xyz = fi->meltb(lmon,:,:)
     meltb = fillGap(xyz,ulat2d,ulon2d)
-   ;meltb = maskIce(meltb,hemisphere)
 
     xyz = fi->meltl(lmon,:,:)
     meltl = fillGap(xyz,ulat2d,ulon2d)
-   ;meltl = maskIce(meltl,hemisphere)
 
     xyz = 100*fi->aice(lmon,:,:)
     aice = fillGap(xyz,ulat2d,ulon2d)
@@ -251,13 +242,10 @@ begin
 
     dmeltt=meltt-dmeltt
     dmeltb=meltb-dmeltb
-   ;dmeltl=meltl-dmeltl
 
     ; colourmap
    ;wks = gsn_open_wks("x11","siv_201404_l6")
     wks = gsn_open_wks("png",get_script_prefix_name())
-   ;wks = gsn_open_wks("pdf",get_script_prefix_name())
-   ;wks = gsn_open_wks("eps",get_script_prefix_name())
     plot1 = new(2,graphic)
     plot2 = new(2,graphic)
     plot3 = new(2,graphic)
@@ -266,22 +254,17 @@ begin
       cmap ="precip2_17lev";"perc2_9lev";
       gsn_define_colormap(wks,cmap)
       res = setPolarPlotResources(varname,hemisphere)
-    ; res@lbLabelBarOn    = False           ; turn off individual cb's
       res@gsnCenterString = ""
       res@gsnLeftString   = ""
       res@gsnRightString  = ""
-    ; res@lbOrientation   = "Vertical"   ; vertical label bar
       res@gsnSpreadColors = False        ; no longer automatic
 
       pres1                  = True                ; mods desired
       pres1@gsnFrame         = False               ; save panel until both ready
       pres1@gsnPanelLeft     = 0.03		      ; draw from center to right edge 
       pres1@gsnPanelRight    = 0.33                 ; draw from left edge to center
-    ; pres1@gsnPanelLabelBar = false                ; commom label bar
       pres1@lbLeftMarginF  = 0.03
       pres1@lbLabelFontHeightF  = 0.015      ; make labels smaller
-    ; pres1@lbOrientation   = "Vertical"   ; vertical label bar
-    ; pres1@lbLabelStride    = 2                   ; every other label
       pres1@gsnPanelMainFontHeightF = 0.0150
       pres1@gsnPanelMainString = "Forecast July 2016 (IC=1Jan2016)"
 

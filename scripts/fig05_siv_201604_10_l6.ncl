@@ -22,7 +22,6 @@
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_code.ncl"
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_csm.ncl"
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/contributed.ncl"
-;load "./panel_two_sets.ncl"
 
 function fillArray(xi,xigap)
 local dimxi, xo
@@ -33,7 +32,6 @@ begin
     ; copy the original data
     xo(:dimxi(0)-1,:) = xi
     ; this line fills the extra cells with data in xigap
-;rm line    xo(dimxi(0),:) = xigap(dimxi(0)-1,:)
     return(xo)
 end
 
@@ -59,7 +57,6 @@ end
 function getContourLevels(varname,hemisphere)
 begin
     if (varname .eq. "aice") then
-      ;cntrs=(/5,10,15,20,30,40,50,60,70,80,85,90,95,99/) ; aice
        cntrs=(/10,20,30,40,50,60,70,80,90/) ; aice
     end if
     if (varname .eq. "hi") then
@@ -98,7 +95,6 @@ begin
         res@mpMaxLatF = -60
     end if
     res@cnLevels       = cntrs
-   ;res@cnFillColors = (/2,3,4,5,6,7,8,9,10,11/)
     res@cnFillColors = (/3,4,6,7,9,13,14,15,16,17/)
     res@cnMinLevelValF = cntrs(0)
     return(res) 
@@ -188,8 +184,8 @@ begin
     obs2= maskIce(obs2,hemisphere)
 
     ; colourmap
-     wks = gsn_open_wks("x11", "sie_201610_l6")
-    ;wks = gsn_open_wks("png",get_script_prefix_name())
+    ;wks = gsn_open_wks("x11", "sie_201610_l6")
+     wks = gsn_open_wks("png",get_script_prefix_name())
     plot = new(6,graphic) ; create a plot array
     cmap = "precip2_17lev";"perc2_9lev";
     gsn_define_colormap(wks,cmap)

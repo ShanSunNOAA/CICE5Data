@@ -93,7 +93,7 @@ load /scratch2/BMC/gsd-fv3-dev/sun/cice_result/cfsr_run/sie_mon_1710.txt; ctr_ex
 load /scratch2/BMC/gsd-fv3-dev/sun/cice_result/cfsr_run/sie_mon_1711.txt; ctr_ext(8,4,1:2)=sie_mon_1711(lead7,2:3); ctr_ext1(7,11,1:2)=sie_mon_1711(lead1,2:3);
 load /scratch2/BMC/gsd-fv3-dev/sun/cice_result/cfsr_run/sie_mon_1712.txt; ctr_ext(8,5,1:2)=sie_mon_1712(lead7,2:3); ctr_ext1(7,12,1:2)=sie_mon_1712(lead1,2:3);
 
-%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%
 
 load /scratch2/BMC/gsd-fv3-dev/sun/cice_result/cfsr_run/siv_mon_1104.txt; ctr_vol(1,9,1:2)=siv_mon_1104(lead7,2:3); ctr_vol1(1,4,1:2)=siv_mon_1104(lead1,2:3);
 load /scratch2/BMC/gsd-fv3-dev/sun/cice_result/cfsr_run/siv_mon_1105.txt; ctr_vol(1,10,1:2)=siv_mon_1105(lead7,2:3);ctr_vol1(1,5,1:2)=siv_mon_1105(lead1,2:3);
@@ -263,11 +263,6 @@ for m=1:12
 text(m-.1,ymin-(ymax-ymin)*.020,months(m,1:1),'FontSize',6)
 end
 xlabel ('Target Month','fontsize',8)
-%yticks([0 7 14 21 28])
-%yticklabels({'0','7','14','21','28'})
-%a = get(gca,'yTickLabel');  
-%set(gca,'yTickLabel',a,'fontsize',8)
-
 end % n=
 
 print -depsc2 fig01_sie_siv_std.eps
